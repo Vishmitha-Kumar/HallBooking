@@ -30,17 +30,17 @@ public class Booking {
 
     @ManyToOne
     @JoinColumn(name="user_id")
-    private User user;
+    private User users;
 
     @ManyToOne
     @JoinColumn(name="hall_id")
-    private Hall hall;
+    private Hall halls;
 
     public Booking() {
     }
 
     public Booking(Long id, String occasion, int guest, Long contact, Long budge, String food, Date fromdate,
-            Date todate, User user, Hall hall) {
+            Date todate,  Hall hall) {
         this.id = id;
         this.occasion = occasion;
         this.guest = guest;
@@ -49,8 +49,8 @@ public class Booking {
         this.food = food;
         this.fromdate = fromdate;
         this.todate = todate;
-        this.user = user;
-        this.hall = hall;
+     
+        this.halls = halls;
     }
 
     public Long getId() {
@@ -117,20 +117,14 @@ public class Booking {
         this.todate = todate;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
+  
 
     public Hall getHall() {
-        return hall;
+        return halls;
     }
 
-    public void setHall(Hall hall) {
-        this.hall = hall;
+    public void setHall(Hall halls) {
+        this.halls = halls;
     }
    
     

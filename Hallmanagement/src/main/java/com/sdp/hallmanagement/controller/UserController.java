@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @RestController
 @RequestMapping("/request")
-@CrossOrigin("*")
+// @CrossOrigin("*")
 public class UserController {
 
     @Autowired
@@ -44,8 +44,5 @@ public class UserController {
      
         return service.loginUser(login);
     }
-        //     @PutMapping("/edit/{id}")
-        // public String EditUser(@RequestBody User user,@PathVariable Long id ){
-        //     return service.EditUser(user,id);
-        // }
+       
 }

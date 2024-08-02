@@ -2,9 +2,10 @@ package com.sdp.hallmanagement.module;
 
 import java.util.List;
 
-import com.sdp.hallmanagement.service.HallSubService;
+import com.sdp.hallmanagement.service.HallDetailsService;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -30,17 +31,19 @@ public class Hall {
     private String detail;
     private String organiser;
     private String contact;
-    @ManyToOne 
-    @JoinColumn(name="user_id")
-    private User user;
 
-    @OneToMany(mappedBy = "hall")
+    // @ManyToOne 
+    // @JoinColumn(name="user_id")
+    // private User users;
+
+    @OneToMany(mappedBy = "halls")
     private List<Booking> bookings;
 
+    @ElementCollection
+    private List<HallDetails> hallsubs;
 
-    @OneToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name="hallsub_id",referencedColumnName = "id")
-    private HallSub hallsubs;
+    @ElementCollection
+    private List<HallImages> hallImages;
 
     
     public Hall() {
@@ -111,12 +114,7 @@ public class Hall {
     public void setContact(String contact) {
         this.contact = contact;
     }
-    public User getUser() {
-        return user;
-    }
-    public void setUser(User user) {
-        this.user = user;
-    }
+   
     public List<Booking> getBookings() {
         return bookings;
     }
