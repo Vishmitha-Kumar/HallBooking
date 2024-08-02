@@ -11,7 +11,7 @@ public class HallSub {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     private int vegprice;
     private int nonvegprice;
     private String reviews;
@@ -25,7 +25,7 @@ public class HallSub {
 
     public HallSub() {
     }
-    public HallSub(int id, int vegprice, int nonvegprice, String reviews, String guest, String price) {
+    public HallSub(Long id, int vegprice, int nonvegprice, String reviews, String guest, String price) {
         this.id = id;
         this.vegprice = vegprice;
         this.nonvegprice = nonvegprice;
@@ -33,10 +33,10 @@ public class HallSub {
         this.guest = guest;
         this.price = price;
     }
-    public int getId() {
+    public Long getId() {
         return id;
     }
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
     public int getVegprice() {
@@ -69,6 +69,13 @@ public class HallSub {
     public void setPrice(String price) {
         this.price = price;
     }
+    public Hall getHalls() {
+        return halls;
+    }
+    public void setHalls(Hall halls) {
+        this.halls = halls;
+    }
+    
     
     
 }
