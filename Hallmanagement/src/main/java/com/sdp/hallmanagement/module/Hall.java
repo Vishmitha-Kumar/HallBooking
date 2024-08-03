@@ -1,27 +1,14 @@
 package com.sdp.hallmanagement.module;
 
 import java.util.List;
-
-import com.sdp.hallmanagement.service.HallDetailsService;
-
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.ElementCollection;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
-
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jakarta.persistence.*;
 
 @Entity
 public class Hall {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private Long id;
     private String name;
     private String location;
@@ -32,24 +19,16 @@ public class Hall {
     private String organiser;
     private String contact;
 
-    // @ManyToOne 
-    // @JoinColumn(name="user_id")
-    // private User users;
-
     @OneToMany(mappedBy = "halls")
     private List<Booking> bookings;
 
-    @ElementCollection
-    private List<HallDetails> hallsubs;
+    @Embedded
+    private HallDetails hallDetails;
 
-    @ElementCollection
-    private List<HallImages> hallImages;
+    public Hall() {}
 
-    
-    public Hall() {
-    }
     public Hall(Long id, String name, String location, String description, String functype, String halltype,
-            String detail, String organiser, String contact) {
+            String detail, String organiser, String contact, List<Booking> bookings, HallDetails hallDetails) {
         this.id = id;
         this.name = name;
         this.location = location;
@@ -59,67 +38,97 @@ public class Hall {
         this.detail = detail;
         this.organiser = organiser;
         this.contact = contact;
+        this.bookings = bookings;
+        this.hallDetails = hallDetails;
     }
+
     public Long getId() {
         return id;
     }
+
     public void setId(Long id) {
         this.id = id;
     }
+
     public String getName() {
         return name;
     }
+
     public void setName(String name) {
         this.name = name;
     }
+
     public String getLocation() {
         return location;
     }
+
     public void setLocation(String location) {
         this.location = location;
     }
+
     public String getDescription() {
         return description;
     }
+
     public void setDescription(String description) {
         this.description = description;
     }
+
     public String getFunctype() {
         return functype;
     }
+
     public void setFunctype(String functype) {
         this.functype = functype;
     }
+
     public String getHalltype() {
         return halltype;
     }
+
     public void setHalltype(String halltype) {
         this.halltype = halltype;
     }
+
     public String getDetail() {
         return detail;
     }
+
     public void setDetail(String detail) {
         this.detail = detail;
     }
+
     public String getOrganiser() {
         return organiser;
     }
+
     public void setOrganiser(String organiser) {
         this.organiser = organiser;
     }
+
     public String getContact() {
         return contact;
     }
+
     public void setContact(String contact) {
         this.contact = contact;
     }
-   
+
     public List<Booking> getBookings() {
         return bookings;
     }
+
     public void setBookings(List<Booking> bookings) {
         this.bookings = bookings;
     }
+
+    public HallDetails getHallDetails() {
+        return hallDetails;
+    }
+
+    public void setHallDetails(HallDetails hallDetails) {
+        this.hallDetails = hallDetails;
+    }
+
     
 }

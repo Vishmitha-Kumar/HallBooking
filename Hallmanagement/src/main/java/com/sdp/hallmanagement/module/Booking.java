@@ -19,9 +19,9 @@ public class Booking {
 
     private Long id;
     private String occasion;
-    private int guest;
+    private String guest;
     private Long contact;
-    private Long budge;
+    private Long budget;
     private String food;
     @Temporal(TemporalType.DATE)
     private Date fromdate;
@@ -36,20 +36,21 @@ public class Booking {
     @JoinColumn(name="hall_id")
     private Hall halls;
 
+    
     public Booking() {
     }
 
-    public Booking(Long id, String occasion, int guest, Long contact, Long budge, String food, Date fromdate,
-            Date todate,  Hall hall) {
+    public Booking(Long id, String occasion, String guest, Long contact, Long budget, String food, Date fromdate,
+            Date todate, User users, Hall halls) {
         this.id = id;
         this.occasion = occasion;
         this.guest = guest;
         this.contact = contact;
-        this.budge = budge;
+        this.budget = budget;
         this.food = food;
         this.fromdate = fromdate;
         this.todate = todate;
-     
+        this.users = users;
         this.halls = halls;
     }
 
@@ -69,11 +70,11 @@ public class Booking {
         this.occasion = occasion;
     }
 
-    public int getGuest() {
+    public String getGuest() {
         return guest;
     }
 
-    public void setGuest(int guest) {
+    public void setGuest(String guest) {
         this.guest = guest;
     }
 
@@ -85,12 +86,12 @@ public class Booking {
         this.contact = contact;
     }
 
-    public Long getBudge() {
-        return budge;
+    public Long getBudget() {
+        return budget;
     }
 
-    public void setBudge(Long budge) {
-        this.budge = budge;
+    public void setBudget(Long budget) {
+        this.budget = budget;
     }
 
     public String getFood() {
@@ -117,16 +118,21 @@ public class Booking {
         this.todate = todate;
     }
 
-  
+    public User getUsers() {
+        return users;
+    }
 
-    public Hall getHall() {
+    public void setUsers(User users) {
+        this.users = users;
+    }
+
+    public Hall getHalls() {
         return halls;
     }
 
-    public void setHall(Hall halls) {
+    public void setHalls(Hall halls) {
         this.halls = halls;
     }
+
    
-    
-    
 }

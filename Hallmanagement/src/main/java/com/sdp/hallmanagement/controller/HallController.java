@@ -12,6 +12,14 @@ import org.springframework.web.bind.annotation.RestController;
 import com.sdp.hallmanagement.module.Hall;
 import com.sdp.hallmanagement.service.HallService;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PutMapping;
+
+
+
 @RestController
 @RequestMapping("/api/hall")
 public class HallController {
@@ -25,7 +33,32 @@ public class HallController {
             return new ResponseEntity<>(hallService.addHalls(halls), HttpStatus.CREATED);
     } 
     
+    @GetMapping("/getHall/{id}")
+   public ResponseEntity<?> getHalls(@PathVariable Long id){
+    return new ResponseEntity<>(hallService.getHalls(id),HttpStatus.OK);
+   }
     
+   @GetMapping("/getAlls")
+   public ResponseEntity<?> getAllHall(){
+    return new ResponseEntity<>(hallService.getAllHall(),HttpStatus.OK);
+   }
+
+   @PutMapping("/putHall")
+   public ResponseEntity<?> updateHall ( @RequestBody Hall halls) {
+    try {
+        Hall updatedHall = hallService.updateHall(halls);
+        return new ResponseEntity<>(updatedHall, HttpStatus.OK);
+    } catch (RuntimeException e) {
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+    }  
+   }
+
+   @DeleteMapping("/deleteHall/{id}")
+   public String deleteHall(@PathVariable Long id){
+    return hallService.deleteHall(id);
+   }
+   
+
 
     
 }
