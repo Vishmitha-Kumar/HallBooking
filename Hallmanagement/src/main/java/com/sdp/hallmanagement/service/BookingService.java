@@ -46,13 +46,13 @@ public class BookingService {
         return bookingRepository.findById(id);
         
     }
-    public Booking updateBooking(Booking booking) {
-        Optional<Booking> existingBooking = bookingRepository.findById(booking.getId());
+    public Booking updateBooking(Long id,Booking booking) {
+        Optional<Booking> existingBooking = bookingRepository.findById(id);
         
         if (existingBooking.isPresent()) {
             Booking updatedBooking = existingBooking.get();
             
-            // Update fields
+         
             updatedBooking.setOccasion(booking.getOccasion());
             updatedBooking.setGuest(booking.getGuest());
             updatedBooking.setContact(booking.getContact());
@@ -61,7 +61,7 @@ public class BookingService {
             updatedBooking.setFromdate(booking.getFromdate());
             updatedBooking.setTodate(booking.getTodate());
             
-            // Ensure the related User and Hall are set
+           
             Optional<User> user = userRepository.findById(booking.getUsers().getId());
             Optional<Hall> hall = hallRepository.findById(booking.getHalls().getId());
 

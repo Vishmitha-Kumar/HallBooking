@@ -2,6 +2,9 @@ package com.sdp.hallmanagement.module;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -30,10 +33,12 @@ public class Booking {
 
     @ManyToOne
     @JoinColumn(name="user_id")
+    // @JsonIgnore
     private User users;
 
     @ManyToOne
     @JoinColumn(name="hall_id")
+    // @JsonIgnore
     private Hall halls;
 
     

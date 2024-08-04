@@ -20,6 +20,7 @@ public class Hall {
     private String contact;
 
     @OneToMany(mappedBy = "halls")
+  
     private List<Booking> bookings;
 
     @Embedded

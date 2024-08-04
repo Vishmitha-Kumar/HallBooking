@@ -43,10 +43,10 @@ public class HallController {
     return new ResponseEntity<>(hallService.getAllHall(),HttpStatus.OK);
    }
 
-   @PutMapping("/putHall")
-   public ResponseEntity<?> updateHall ( @RequestBody Hall halls) {
+   @PutMapping("/putHall/{id}")
+   public ResponseEntity<?> updateHall ( @PathVariable Long id,@RequestBody Hall halls) {
     try {
-        Hall updatedHall = hallService.updateHall(halls);
+        Hall updatedHall = hallService.updateHall(id,halls);
         return new ResponseEntity<>(updatedHall, HttpStatus.OK);
     } catch (RuntimeException e) {
         return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);

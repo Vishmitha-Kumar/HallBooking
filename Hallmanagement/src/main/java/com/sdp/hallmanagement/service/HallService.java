@@ -19,8 +19,8 @@ public class HallService {
         return hallRepository.save(halls);
     }
 
-    public Hall updateHall(Hall halls) {
-        Optional<Hall> existingHall = hallRepository.findById(halls.getId());
+    public Hall updateHall(Long id,Hall halls) {
+        Optional<Hall> existingHall = hallRepository.findById(id);
 
         if (existingHall.isPresent()) {
             Hall updatedHall = existingHall.get();

@@ -48,10 +48,10 @@ public class BookingController {
     return new ResponseEntity<>(bs.getBooking(id),HttpStatus.OK);
    }
     
-   @PutMapping("/putBooking")
-  public ResponseEntity<?> updateBooking(@RequestBody Booking books){
+   @PutMapping("/putBooking/{id}")
+  public ResponseEntity<?> updateBooking(@PathVariable Long id,@RequestBody Booking books){
     try{
-        Booking updatebooks=bs.updateBooking(books);
+        Booking updatebooks=bs.updateBooking(id,books);
         return new ResponseEntity<>(updatebooks,HttpStatus.OK);
     }
     catch(RuntimeException e){
